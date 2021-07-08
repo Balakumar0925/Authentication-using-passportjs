@@ -1,5 +1,6 @@
 var express = require('express');
 var passport = require('passport');
+const { route } = require('.');
 var router = express.Router();
 
 
@@ -60,6 +61,31 @@ router.post('/login',function(req, res, next){
         failureFlash:true
     },console.log('passport'))(req, res, next);
 });
+
+router.get('/google', passport.authenticate('google',{
+    scope:['profile']
+}));
+
+
+router.get('/google/user', passport.authenticate('google'), (req, res) => {
+    console.log(req.session);
+    res.redirect('/userhome');
+    //res.render('userhome.ejs');
+
+    //res.send('you reached the redirect URI');
+});
+
+
+router.get('/facebook',passport.authenticate('facebook'));
+
+
+router.get('/facebook/user',passport.authenticate('facebook',{
+    successRedirect:'/userhome',
+    failureRedirect:'/login'
+}), (req, res) => {
+    console.log('auth success');
+});
+
 
 router.get('/logout',  (req, res) => {
     req.logout();

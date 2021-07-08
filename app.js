@@ -6,7 +6,22 @@ var passport = require('passport');
 var session  = require('express-session');
 const flash = require('express-flash');
 
+var fs =require('fs');
+var https = require('https');
+const { KeyObject } = require('crypto');
+
+
+app.get('/',function(req,res){
+  if(req.protocol == 'http'){
+    res.redirect('https://localhost:3000');
+  }
+});
+
 require('./auth/passport')(passport);
+
+require('./auth/g-oauth')(passport);
+
+require('./auth/facebook')();
 
 app.use(
     session({
@@ -37,4 +52,12 @@ app.use('/views',require('./routes/user'));
 
 app.listen(8000,function(){
     console.log('server running');
+});
+
+
+const key = fs.readFileSync('./sslkey/domain.key','utf-8');
+const csr = fs.readFileSync('./sslkey/domain.crt','utf-8');
+
+const server = https.createServer({key:key,cert:csr}, app).listen(3000, function(){
+  console.log('server listening on port 3000 for secured connection');
 });

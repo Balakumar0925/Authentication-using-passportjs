@@ -7,6 +7,7 @@ router.get('/',function(req,res){
 });
 
 router.get('/userhome', middleware(), function(req,res){
+    console.log('coming to route');
     req.flash('info',req.session.passport.user);
     res.render('userhome');
 });
