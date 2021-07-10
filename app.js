@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var session  = require('express-session');
 const flash = require('express-flash');
+let port = process.env.PORT || 3000 ;
 
 var fs =require('fs');
 var https = require('https');
@@ -58,6 +59,6 @@ app.listen(8000,function(){
 const key = fs.readFileSync('./sslkey/domain.key','utf-8');
 const csr = fs.readFileSync('./sslkey/domain.crt','utf-8');
 
-const server = https.createServer({key:key,cert:csr}, app).listen(3000, function(){
-  console.log('server listening on port 3000 for secured connection');
+const server = https.createServer({key:key,cert:csr}, app).listen(port, function(){
+  console.log('server listening on the port ' + port);
 });
