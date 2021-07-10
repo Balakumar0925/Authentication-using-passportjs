@@ -51,7 +51,7 @@ app.use(flash());
 app.use('/', require('./routes/index'));
 app.use('/views',require('./routes/user'));
 
-app.listen(8000,function(){
+app.listen(port,function(){
     console.log('server running');
 });
 
