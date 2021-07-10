@@ -12,11 +12,12 @@ var https = require('https');
 const { KeyObject } = require('crypto');
 
 
-app.get('/',function(req,res){
+/*app.get('/',function(req,res){
   if(req.protocol == 'http'){
+    console.log('this is insane ', req.protocol);
     res.redirect('https://localhost:3000');
   }
-});
+});*/
 
 require('./auth/passport')(passport);
 
