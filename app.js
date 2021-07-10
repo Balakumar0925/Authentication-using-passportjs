@@ -51,14 +51,14 @@ app.use(flash());
 app.use('/', require('./routes/index'));
 app.use('/views',require('./routes/user'));
 
-/*app.listen(8000,function(){
+app.listen(8000,function(){
     console.log('server running');
-});*/
+});
 
 
 const key = fs.readFileSync('./sslkey/domain.key','utf-8');
 const csr = fs.readFileSync('./sslkey/domain.crt','utf-8');
 
-const server = https.createServer({key:key,cert:csr}, app).listen(port, function(){
+/*const server = https.createServer({key:key,cert:csr}, app).listen(port, function(){
   console.log('server listening on the port ' + port);
-});
+});*/
