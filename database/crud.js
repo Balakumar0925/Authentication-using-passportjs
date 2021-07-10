@@ -1,6 +1,6 @@
 var mongodb = require('mongodb');
-var url = "mongodb://localhost:27017/";
-//var url = "mongodb+srv://balakumar12:balakumar12@cluster1.tpblc.mongodb.net/Login?retryWrites=true&w=majority";
+//var url = "mongodb://localhost:27017/";
+var url = "mongodb+srv://balakumar12:balakumar12@cluster1.tpblc.mongodb.net/Login?retryWrites=true&w=majority";
 
 module.exports = {
     Register(data){
