@@ -5,7 +5,7 @@ var keys = require('./keys');
 module.exports = function(passport) {
     console.log('using passport');
     passport.use(new GoogleStrategy({
-        callbackURL: 'http://localhost:8000/views/google/user',
+        callbackURL: 'https://loginusingpassport.herokuapp.com/views/google/user',
         clientID: keys.google.ClientID,
         clientSecret: keys.google.ClientSecret
    }, function(accessToken,refreshToken,profile,done){
