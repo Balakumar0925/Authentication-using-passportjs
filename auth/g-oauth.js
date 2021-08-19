@@ -1,6 +1,7 @@
 //var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var keys = require('./keys');
+var user = require('../database/crud');
 
 module.exports = function(passport) {
     console.log('using passport');
@@ -10,12 +11,13 @@ module.exports = function(passport) {
         clientSecret: keys.google.ClientSecret
    }, function(accessToken,refreshToken,profile,done){
        console.log('coming here');
-       //console.log(profile);
-       /*User.findOrCreate({ googleId: profile.id }, function (err, user) {
+       console.log(profile);
+        user.Register(profile);
+      /* User.findOrCreate({ googleId: profile.id }, function (err, user) {
            return done(null, user);
        });*/
-       console.log('hi from google oauth');
-       console.log(profile);
+       //console.log('hi from google oauth');
+      // console.log(profile);
        return done(null, profile);
    })
    );
